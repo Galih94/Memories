@@ -13,6 +13,7 @@ struct ContentView: View {
     @State private var resultImage: Image?
     @State private var shouldNavigate: Bool = false
     @State private var memories = [Memory]()
+    @State private var imageData: Data?
     
     var body: some View {
         NavigationStack {
@@ -32,10 +33,12 @@ struct ContentView: View {
                             DetailMemoryView(memory: memory)
                         } label: {
                             HStack {
-                                memory.image
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(height: 20)
+                                if let image = memory.getImageFromData() {
+                                    image
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(height: 20)
+                                }
                                 Text(memory.name)
                             }
                         }
@@ -44,7 +47,7 @@ struct ContentView: View {
             }
             .navigationTitle("Memories")
             .navigationDestination(isPresented: $shouldNavigate) {
-                AddMemoryView(item: resultImage, memories: $memories )
+                AddMemoryView(imageData: imageData ?? Data(), memories: $memories )
             }
         }
     }
@@ -53,6 +56,7 @@ struct ContentView: View {
         Task {
             guard let imageData = try await item.loadTransferable(type: Data.self) else { return }
             guard let inputImage = UIImage(data: imageData) else { return }
+            self.imageData = imageData
             resultImage = Image(uiImage: inputImage)
             shouldNavigate = true
         }

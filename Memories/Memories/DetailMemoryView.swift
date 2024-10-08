@@ -15,10 +15,12 @@ struct DetailMemoryView: View {
     var body: some View {
         VStack {
             Text(memory.name)
-            memory.image
-                .resizable()
-                .scaledToFit()
-                .frame(height: 200)
+            if let image = memory.getImageFromData() {
+                image
+                    .resizable()
+                    .scaledToFit()
+                    .frame(height: 200)
+            }
         }
         .padding()
         Spacer()
@@ -26,5 +28,5 @@ struct DetailMemoryView: View {
 }
 
 #Preview {
-    DetailMemoryView(memory: Memory(image: Image(systemName: "photo"), name: "Swimming"))
+    DetailMemoryView(memory: Memory(imageData: Data(), name: "Swimming"))
 }

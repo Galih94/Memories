@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AddMemoryView: View {
     @Environment(\.dismiss) var dismiss
-    var item: Image?
+    var imageData: Data
     @State private var name: String = ""
     @Binding var memories: [Memory]
     
@@ -17,7 +17,7 @@ struct AddMemoryView: View {
         VStack {
             TextField("Input the name of memory", text: $name)
                 .multilineTextAlignment(.center)
-            if let item {
+            if let item = getImage(from: imageData) {
                 // Display the selected image
                 item
                     .resizable()
@@ -25,19 +25,24 @@ struct AddMemoryView: View {
                     .frame(height: 200)
             }
             Button("Confirm") {
-                guard let item else { return }
                 var temp = memories
-                temp.append(Memory(image: item, name: name))
+                temp.append(Memory(imageData: imageData, name: name))
                 memories = temp.sorted()
                 dismiss()
             }
-            .disabled(item == nil)
+            .disabled(name == "")
         }
         .padding()
         Spacer()
     }
+    
+    private func getImage(from imageData: Data) -> Image? {
+        guard let inputImage = UIImage(data: imageData) else { return nil }
+        return Image(uiImage: inputImage)
+    }
+    
 }
 
 #Preview {
-    AddMemoryView(item: nil, memories: .constant([]))
+    AddMemoryView(imageData: Data(), memories: .constant([]))
 }

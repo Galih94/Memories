@@ -10,12 +10,19 @@ import SwiftUI
 
 struct Memory: Identifiable {
     let id = UUID()
-    let image: Image
+    let imageData: Data
     let name: String
 }
 
 extension Memory: Comparable {
     static func < (lhs: Memory, rhs: Memory) -> Bool {
         return lhs.name < rhs.name
+    }
+}
+
+extension Memory {
+    func getImageFromData() -> Image? {
+        guard let inputImage = UIImage(data: imageData) else { return nil }
+        return Image(uiImage: inputImage)
     }
 }
