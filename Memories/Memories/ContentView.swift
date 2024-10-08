@@ -12,6 +12,7 @@ struct ContentView: View {
     @State private var selectedItem: PhotosPickerItem?
     @State private var resultImage: Image?
     @State private var shouldNavigate: Bool = false
+    
     var body: some View {
         NavigationStack {
             VStack {
@@ -27,18 +28,24 @@ struct ContentView: View {
                     }
                 }
                 .onChange(of: selectedItem) {
-                    shouldNavigate = true
+                    guard let selectedItem else { return }
+                    onSelectedNewImage(from: selectedItem)
                 }
             }
             .navigationTitle("Memories")
             .navigationDestination(isPresented: $shouldNavigate) {
-                DetailMemoryView(item: selectedItem)
+                DetailMemoryView(item: resultImage)
             }
         }
     }
     
-    private func onSelectedNewImage() {
-        /// handle selected new image here
+    private func onSelectedNewImage(from item: PhotosPickerItem) {
+        Task {
+            guard let imageData = try await item.loadTransferable(type: Data.self) else { return }
+            guard let inputImage = UIImage(data: imageData) else { return }
+            resultImage = Image(uiImage: inputImage)
+            shouldNavigate = true
+        }
     }
 }
 
