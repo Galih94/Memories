@@ -9,13 +9,12 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationStack {
+            VStack {
+                ContentUnavailableView("No Memories", systemImage: "photo.badge.plus", description: Text("Insert new memories"))
+            }
         }
-        .padding()
+        .navigationTitle("Memories")
     }
 }
 
