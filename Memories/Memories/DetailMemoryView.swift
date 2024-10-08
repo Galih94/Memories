@@ -10,15 +10,24 @@ import SwiftUI
 
 struct DetailMemoryView: View {
     var item: Image?
+    @State private var name: String = ""
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-        if let item {
-            // Display the selected image
-            item
-                .resizable()
-                .scaledToFit()
-                .frame(height: 200)
+        VStack {
+            TextField("Input the name of memory", text: $name)
+            if let item {
+                // Display the selected image
+                item
+                    .resizable()
+                    .scaledToFit()
+                    .frame(height: 200)
+            }
+            Button("Confirm") {
+                
+            }
+            .disabled(item == nil)
         }
+        .padding()
+        Spacer()
     }
 }
 
