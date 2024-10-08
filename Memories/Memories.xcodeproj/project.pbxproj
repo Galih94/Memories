@@ -12,6 +12,7 @@
 		2A1917B72CB4D8E100331381 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A1917B62CB4D8E100331381 /* Assets.xcassets */; };
 		2A1917BA2CB4D8E100331381 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A1917B92CB4D8E100331381 /* Preview Assets.xcassets */; };
 		2A1917C12CB4E4B700331381 /* DetailMemoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1917C02CB4E4B700331381 /* DetailMemoryView.swift */; };
+		2A1917C32CB505EC00331381 /* Memory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1917C22CB505EC00331381 /* Memory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,7 @@
 		2A1917B62CB4D8E100331381 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2A1917B92CB4D8E100331381 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2A1917C02CB4E4B700331381 /* DetailMemoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMemoryView.swift; sourceTree = "<group>"; };
+		2A1917C22CB505EC00331381 /* Memory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Memory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +56,7 @@
 			isa = PBXGroup;
 			children = (
 				2A1917B22CB4D8DF00331381 /* MemoriesApp.swift */,
+				2A1917C22CB505EC00331381 /* Memory.swift */,
 				2A1917B42CB4D8DF00331381 /* ContentView.swift */,
 				2A1917C02CB4E4B700331381 /* DetailMemoryView.swift */,
 				2A1917B62CB4D8E100331381 /* Assets.xcassets */,
@@ -140,6 +143,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A1917C32CB505EC00331381 /* Memory.swift in Sources */,
 				2A1917B52CB4D8DF00331381 /* ContentView.swift in Sources */,
 				2A1917C12CB4E4B700331381 /* DetailMemoryView.swift in Sources */,
 				2A1917B32CB4D8DF00331381 /* MemoriesApp.swift in Sources */,
