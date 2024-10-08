@@ -11,20 +11,30 @@ import SwiftUI
 struct ContentView: View {
     @State private var selectedItem: PhotosPickerItem?
     @State private var resultImage: Image?
+    @State private var shouldNavigate: Bool = false
     var body: some View {
         NavigationStack {
             VStack {
                 PhotosPicker(selection: $selectedItem) {
                     if let resultImage {
-                        /// handle show image here
+                        // Display the selected image
+                        resultImage
+                            .resizable()
+                            .scaledToFit()
+                            .frame(height: 200)
                     } else {
                         ContentUnavailableView("No Memories", systemImage: "photo.badge.plus", description: Text("Insert new memories"))
                     }
                 }
-                .onChange(of: selectedItem, onSelectedNewImage)
+                .onChange(of: selectedItem) {
+                    shouldNavigate = true
+                }
+            }
+            .navigationTitle("Memories")
+            .navigationDestination(isPresented: $shouldNavigate) {
+                DetailMemoryView(item: selectedItem)
             }
         }
-        .navigationTitle("Memories")
     }
     
     private func onSelectedNewImage() {
