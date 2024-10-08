@@ -13,3 +13,9 @@ struct Memory: Identifiable {
     let image: Image
     let name: String
 }
+
+extension Memory: Comparable {
+    static func < (lhs: Memory, rhs: Memory) -> Bool {
+        return lhs.name < rhs.name
+    }
+}

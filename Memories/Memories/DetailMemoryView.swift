@@ -27,7 +27,9 @@ struct DetailMemoryView: View {
             }
             Button("Confirm") {
                 guard let item else { return }
-                memories.append(Memory(image: item, name: name))
+                var temp = memories
+                temp.append(Memory(image: item, name: name))
+                memories = temp.sorted()
                 dismiss()
             }
             .disabled(item == nil)
