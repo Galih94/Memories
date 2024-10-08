@@ -25,22 +25,26 @@ struct ContentView: View {
                     onSelectedNewImage(from: selectedItem)
                 }
                 if memories.isEmpty {
-                    ContentUnavailableView("No Memories", systemImage: "photo.badge.plus", description: Text("Insert new memories"))
+                    ContentUnavailableView("No Memories", systemImage: "photo", description: Text("Insert new memories"))
                 } else {
                     List(memories) { memory in
-                        HStack {
-                            memory.image
-                                .resizable()
-                                .scaledToFit()
-                                .frame(height: 20)
-                            Text(memory.name)
+                        NavigationLink {
+                            DetailMemoryView(memory: memory)
+                        } label: {
+                            HStack {
+                                memory.image
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(height: 20)
+                                Text(memory.name)
+                            }
                         }
                     }
                 }
             }
             .navigationTitle("Memories")
             .navigationDestination(isPresented: $shouldNavigate) {
-                DetailMemoryView(item: resultImage, memories: $memories )
+                AddMemoryView(item: resultImage, memories: $memories )
             }
         }
     }

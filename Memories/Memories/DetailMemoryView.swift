@@ -10,29 +10,15 @@ import SwiftUI
 
 struct DetailMemoryView: View {
     @Environment(\.dismiss) var dismiss
-    var item: Image?
-    @State private var name: String = ""
-    @Binding var memories: [Memory]
+    var memory: Memory
     
     var body: some View {
         VStack {
-            TextField("Input the name of memory", text: $name)
-                .multilineTextAlignment(.center)
-            if let item {
-                // Display the selected image
-                item
-                    .resizable()
-                    .scaledToFit()
-                    .frame(height: 200)
-            }
-            Button("Confirm") {
-                guard let item else { return }
-                var temp = memories
-                temp.append(Memory(image: item, name: name))
-                memories = temp.sorted()
-                dismiss()
-            }
-            .disabled(item == nil)
+            Text(memory.name)
+            memory.image
+                .resizable()
+                .scaledToFit()
+                .frame(height: 200)
         }
         .padding()
         Spacer()
@@ -40,5 +26,5 @@ struct DetailMemoryView: View {
 }
 
 #Preview {
-    DetailMemoryView(item: nil, memories: .constant([]))
+    DetailMemoryView(memory: Memory(image: Image(systemName: "photo"), name: "Swimming"))
 }
