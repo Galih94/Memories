@@ -12,8 +12,18 @@ struct ContentView: View {
     @State private var selectedItem: PhotosPickerItem?
     @State private var resultImage: Image?
     @State private var shouldNavigate: Bool = false
-    @State private var memories = [Memory]()
+    @State private var memories: [Memory]
     @State private var imageData: Data?
+    
+    let savePath = URL.documentsDirectory.appending(path: "SavedMemories")
+    init() {
+        do {
+            let data = try Data(contentsOf: savePath)
+            memories = try JSONDecoder().decode([Memory].self, from: data)
+        } catch {
+            memories = []
+        }
+    }
     
     var body: some View {
         NavigationStack {
@@ -47,8 +57,19 @@ struct ContentView: View {
             }
             .navigationTitle("Memories")
             .navigationDestination(isPresented: $shouldNavigate) {
-                AddMemoryView(imageData: imageData ?? Data(), memories: $memories )
+                AddMemoryView(imageData: imageData ?? Data(), memories: $memories) {
+                    saveData()
+                }
             }
+        }
+    }
+    
+    private func saveData() {
+        do {
+            let data = try JSONEncoder().encode(memories)
+            try data.write(to: savePath, options: [.atomic, .completeFileProtection])
+        } catch {
+            print("error -- \(error.localizedDescription)")
         }
     }
     

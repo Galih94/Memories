@@ -12,6 +12,7 @@ struct AddMemoryView: View {
     var imageData: Data
     @State private var name: String = ""
     @Binding var memories: [Memory]
+    var onSave: () -> Void
     
     var body: some View {
         VStack {
@@ -28,6 +29,7 @@ struct AddMemoryView: View {
                 var temp = memories
                 temp.append(Memory(imageData: imageData, name: name))
                 memories = temp.sorted()
+                onSave()
                 dismiss()
             }
             .disabled(name == "")
@@ -44,5 +46,5 @@ struct AddMemoryView: View {
 }
 
 #Preview {
-    AddMemoryView(imageData: Data(), memories: .constant([]))
+    AddMemoryView(imageData: Data(), memories: .constant([]), onSave: {})
 }
