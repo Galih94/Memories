@@ -57,9 +57,9 @@ struct ContentView: View {
             }
             .navigationTitle("Memories")
             .navigationDestination(isPresented: $shouldNavigate) {
-                AddMemoryView(imageData: imageData ?? Data(), memories: $memories) {
+                AddMemoryView(imageData: imageData ?? Data(), memories: $memories, onSave: {
                     saveData()
-                }
+                }, locationFetcher: LocationFetcher())
             }
         }
     }

@@ -14,6 +14,7 @@
 		2A1917C12CB4E4B700331381 /* DetailMemoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1917C02CB4E4B700331381 /* DetailMemoryView.swift */; };
 		2A1917C32CB505EC00331381 /* Memory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1917C22CB505EC00331381 /* Memory.swift */; };
 		2A1917C52CB5162F00331381 /* AddMemoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1917C42CB5162F00331381 /* AddMemoryView.swift */; };
+		2A8CCE7D2CB61BE200278E31 /* LocationFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8CCE7C2CB61BE200278E31 /* LocationFetcher.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		2A1917C02CB4E4B700331381 /* DetailMemoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMemoryView.swift; sourceTree = "<group>"; };
 		2A1917C22CB505EC00331381 /* Memory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Memory.swift; sourceTree = "<group>"; };
 		2A1917C42CB5162F00331381 /* AddMemoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMemoryView.swift; sourceTree = "<group>"; };
+		2A8CCE7C2CB61BE200278E31 /* LocationFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationFetcher.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 				2A1917B42CB4D8DF00331381 /* ContentView.swift */,
 				2A1917C02CB4E4B700331381 /* DetailMemoryView.swift */,
 				2A1917C42CB5162F00331381 /* AddMemoryView.swift */,
+				2A8CCE7C2CB61BE200278E31 /* LocationFetcher.swift */,
 				2A1917B62CB4D8E100331381 /* Assets.xcassets */,
 				2A1917B82CB4D8E100331381 /* Preview Content */,
 			);
@@ -148,6 +151,7 @@
 			files = (
 				2A1917C32CB505EC00331381 /* Memory.swift in Sources */,
 				2A1917B52CB4D8DF00331381 /* ContentView.swift in Sources */,
+				2A8CCE7D2CB61BE200278E31 /* LocationFetcher.swift in Sources */,
 				2A1917C52CB5162F00331381 /* AddMemoryView.swift in Sources */,
 				2A1917C12CB4E4B700331381 /* DetailMemoryView.swift in Sources */,
 				2A1917B32CB4D8DF00331381 /* MemoriesApp.swift in Sources */,
@@ -287,6 +291,7 @@
 				DEVELOPMENT_TEAM = 5K6BH2N7SF;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need your location to mark your memorable places";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -316,6 +321,7 @@
 				DEVELOPMENT_TEAM = 5K6BH2N7SF;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need your location to mark your memorable places";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

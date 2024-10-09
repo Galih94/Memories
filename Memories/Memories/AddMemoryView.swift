@@ -13,6 +13,7 @@ struct AddMemoryView: View {
     @State private var name: String = ""
     @Binding var memories: [Memory]
     var onSave: () -> Void
+    let locationFetcher: Locator
     
     var body: some View {
         VStack {
@@ -24,6 +25,16 @@ struct AddMemoryView: View {
                     .resizable()
                     .scaledToFit()
                     .frame(height: 200)
+            }
+            Button("track location") {
+                LocationFetcher().start()
+            }
+            Button("Read Location") {
+                if let location = locationFetcher.lastKnownLocation {
+                    print("cta location is \(location)")
+                } else {
+                    print("cta location is unknown")
+                }
             }
             
         }
@@ -49,5 +60,5 @@ struct AddMemoryView: View {
 }
 
 #Preview {
-    AddMemoryView(imageData: Data(), memories: .constant([]), onSave: {})
+    AddMemoryView(imageData: Data(), memories: .constant([]), onSave: {}, locationFetcher: LocationFetcher())
 }
