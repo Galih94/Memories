@@ -25,7 +25,11 @@ struct AddMemoryView: View {
                     .scaledToFit()
                     .frame(height: 200)
             }
-            Button("Confirm") {
+            
+        }
+        .padding()
+        .toolbar {
+            Button("Confirm", systemImage: "add") {
                 var temp = memories
                 temp.append(Memory(imageData: imageData, name: name))
                 memories = temp.sorted()
@@ -34,7 +38,6 @@ struct AddMemoryView: View {
             }
             .disabled(name == "")
         }
-        .padding()
         Spacer()
     }
     
