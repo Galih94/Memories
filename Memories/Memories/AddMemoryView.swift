@@ -29,7 +29,7 @@ struct AddMemoryView: View {
         }
         .padding()
         .toolbar {
-            Button("Confirm", systemImage: "add") {
+            Button("Confirm") {
                 var temp = memories
                 temp.append(Memory(imageData: imageData, name: name))
                 memories = temp.sorted()
