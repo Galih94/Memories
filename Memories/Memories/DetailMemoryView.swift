@@ -28,5 +28,5 @@ struct DetailMemoryView: View {
 }
 
 #Preview {
-    DetailMemoryView(memory: Memory(imageData: Data(), name: "Swimming"))
+    DetailMemoryView(memory: Memory(imageData: Data(), name: "Swimming", latitude: 0, longitude: 0))
 }

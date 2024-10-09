@@ -15,6 +15,7 @@ struct AddMemoryView: View {
     @Binding var memories: [Memory]
     var onSave: () -> Void
     let locationFetcher: Locator
+    @State private var selectedLocation: CLLocationCoordinate2D?
     
     var body: some View {
         VStack {
@@ -28,27 +29,32 @@ struct AddMemoryView: View {
                     .frame(height: 200)
             }
             MapReader { proxy in
-                Map(initialPosition: locationFetcher.lastKnownCameraPosition ?? locationFetcher.defaultPosition)
-            }
-            Button("Read Location") {
-                if let location = locationFetcher.lastKnownLocation {
-                    print("cta location is \(location)")
-                } else {
-                    print("cta location is unknown")
+                Map(initialPosition: locationFetcher.lastKnownCameraPosition ?? locationFetcher.defaultPosition) {
+                    if let selectedLocation {
+                        Marker("", coordinate: selectedLocation)
+                    }
+                }
+                .onTapGesture { position in
+                    if let coordinate = proxy.convert(position, from: .local) {
+                        selectedLocation = coordinate
+                    }
                 }
             }
-            
         }
         .padding()
         .toolbar {
             Button("Confirm") {
+                guard let selectedLocation else { return }
                 var temp = memories
-                temp.append(Memory(imageData: imageData, name: name))
+                temp.append(Memory(imageData: imageData,
+                                   name: name,
+                                   latitude: selectedLocation.latitude,
+                                   longitude: selectedLocation.longitude))
                 memories = temp.sorted()
                 onSave()
                 dismiss()
             }
-            .disabled(name == "")
+            .disabled(name == "" && selectedLocation != nil)
         }
         .onAppear {
             LocationFetcher().start()

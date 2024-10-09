@@ -12,6 +12,8 @@ struct Memory: Identifiable, Codable {
     var id = UUID()
     let imageData: Data
     let name: String
+    let latitude: Double
+    let longitude: Double
 }
 
 extension Memory: Comparable {
