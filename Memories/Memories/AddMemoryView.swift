@@ -14,7 +14,7 @@ struct AddMemoryView: View {
     @State private var name: String = ""
     @Binding var memories: [Memory]
     var onSave: () -> Void
-    let locationFetcher: Locator
+    @State var locationFetcher: Locator
     @State private var selectedLocation: CLLocationCoordinate2D?
     
     var body: some View {
@@ -56,6 +56,9 @@ struct AddMemoryView: View {
             .disabled(name == "" || selectedLocation == nil)
         }
         .navigationTitle("Add New")
+        .onAppear {
+            locationFetcher.start()
+        }
     }
     
     private func getImage(from imageData: Data) -> Image? {
