@@ -5,8 +5,10 @@
 //  Created by Galih Samudra on 08/10/24.
 //
 
+import MapKit
 import PhotosUI
 import SwiftUI
+
 
 struct DetailMemoryView: View {
     @Environment(\.dismiss) var dismiss
@@ -14,16 +16,19 @@ struct DetailMemoryView: View {
     
     var body: some View {
         VStack {
-            Text(memory.name)
             if let image = memory.getImageFromData() {
                 image
                     .resizable()
                     .scaledToFit()
                     .frame(height: 200)
             }
+            MapReader { proxy in
+                Map(initialPosition: memory.getMapCameraPosition()) {
+                    Marker("Here", coordinate: memory.getLocation())
+                }
+            }
         }
-        .padding()
-        Spacer()
+        .navigationTitle(memory.name)
     }
 }
 

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import MapKit
 import SwiftUI
 
 struct Memory: Identifiable, Codable {
@@ -26,5 +27,17 @@ extension Memory {
     func getImageFromData() -> Image? {
         guard let inputImage = UIImage(data: imageData) else { return nil }
         return Image(uiImage: inputImage)
+    }
+}
+
+extension Memory {
+    func getMapCameraPosition() -> MapCameraPosition {
+        return MapCameraPosition.region(
+            MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: latitude, longitude: longitude),
+                               span: MKCoordinateSpan(latitudeDelta: 10, longitudeDelta: 10)))
+    }
+    
+    func getLocation() -> CLLocationCoordinate2D {
+        return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
 }
