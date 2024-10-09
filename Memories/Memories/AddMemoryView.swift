@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct AddMemoryView: View {
     @Environment(\.dismiss) var dismiss
@@ -26,8 +27,8 @@ struct AddMemoryView: View {
                     .scaledToFit()
                     .frame(height: 200)
             }
-            Button("track location") {
-                LocationFetcher().start()
+            MapReader { proxy in
+                Map(initialPosition: locationFetcher.lastKnownCameraPosition ?? locationFetcher.defaultPosition)
             }
             Button("Read Location") {
                 if let location = locationFetcher.lastKnownLocation {
@@ -48,6 +49,9 @@ struct AddMemoryView: View {
                 dismiss()
             }
             .disabled(name == "")
+        }
+        .onAppear {
+            LocationFetcher().start()
         }
         Spacer()
     }
