@@ -31,7 +31,7 @@ struct AddMemoryView: View {
             MapReader { proxy in
                 Map(initialPosition: locationFetcher.lastKnownCameraPosition ?? locationFetcher.defaultPosition) {
                     if let selectedLocation {
-                        Marker("", coordinate: selectedLocation)
+                        Marker("Here", coordinate: selectedLocation)
                     }
                 }
                 .onTapGesture { position in
@@ -41,7 +41,6 @@ struct AddMemoryView: View {
                 }
             }
         }
-        .padding()
         .toolbar {
             Button("Confirm") {
                 guard let selectedLocation else { return }
@@ -54,12 +53,9 @@ struct AddMemoryView: View {
                 onSave()
                 dismiss()
             }
-            .disabled(name == "" && selectedLocation != nil)
+            .disabled(name == "" || selectedLocation == nil)
         }
-        .onAppear {
-            LocationFetcher().start()
-        }
-        Spacer()
+        .navigationTitle("Add New")
     }
     
     private func getImage(from imageData: Data) -> Image? {
